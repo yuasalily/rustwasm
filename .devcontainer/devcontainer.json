@@ -1,0 +1,42 @@
+{
+	"name": "Rust Algorithms",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/rust:1": {},
+		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/rust-wasi:0": {},
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"christian-kohler.path-intellisense",
+				"humao.rest-client",
+				"vadimcn.vscode-lldb",
+				"rust-lang.rust-analyzer"
+			],
+			"settings": {
+				"files.autoSave": "onFocusChange",
+				"files.trimFinalNewlines": true,
+				"files.trimTrailingWhitespace": true,
+				"editor.minimap.enabled": false,
+				"editor.fontSize": 16,
+				"editor.bracketPairColorization.enabled": true,
+				"editor.copyWithSyntaxHighlighting": false,
+				"editor.formatOnSave": true,
+				"editor.inlayHints.enabled": "on",
+				"workbench.editor.enablePreview": false,
+				"workbench.editor.enablePreviewFromQuickOpen": false,
+				"workbench.tree.renderIndentGuides": "always",
+				"[rust]": {
+					"rust-analyzer.cargo.allFeatures": true,
+					"rust-analyzer.checkOnSave.command": "clippy"
+				}
+			}
+		}
+	},
+	"postCreateCommand": "apt update && apt install -y pkg-config && cargo install wasm-pack --no-default-features",
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root"
+}

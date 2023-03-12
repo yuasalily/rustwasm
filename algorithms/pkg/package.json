@@ -1,0 +1,12 @@
+{
+  "name": "algorithms",
+  "version": "0.1.0",
+  "files": [
+    "algorithms_bg.wasm",
+    "algorithms.js",
+    "algorithms.d.ts"
+  ],
+  "module": "algorithms.js",
+  "types": "algorithms.d.ts",
+  "sideEffects": false
+}
