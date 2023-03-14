@@ -1,13 +1,12 @@
 let wasm;
 
 /**
-* @param {number} left
-* @param {number} right
-* @returns {number}
+* @param {bigint} n
+* @returns {boolean}
 */
-export function add(left, right) {
-    const ret = wasm.add(left, right);
-    return ret >>> 0;
+export function is_prime(n) {
+    const ret = wasm.is_prime(n);
+    return ret !== 0;
 }
 
 async function load(module, imports) {

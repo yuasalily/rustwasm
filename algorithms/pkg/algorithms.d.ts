@@ -1,17 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {number} left
-* @param {number} right
-* @returns {number}
+* @param {bigint} n
+* @returns {boolean}
 */
-export function add(left: number, right: number): number;
+export function is_prime(n: bigint): boolean;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly add: (a: number, b: number) => number;
+  readonly is_prime: (a: number) => number;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
