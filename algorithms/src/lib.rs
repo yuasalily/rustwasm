@@ -43,7 +43,7 @@ pub fn prime_factorization(mut n: u64) -> String {
         res_string = if res_string.is_empty() {
             format!("{}{}-{}", res_string, k, v)
         } else {
-            format!("{}-{}-{}", res_string, k, v)
+            format!("{},{}-{}", res_string, k, v)
         }
     }
     res_string
@@ -66,8 +66,8 @@ mod tests {
 
     #[test]
     fn prime_factorization_test() {
-        assert_eq!(prime_factorization(10), String::from("2-1-5-1"));
-        assert_eq!(prime_factorization(360), String::from("2-3-3-2-5-1"));
+        assert_eq!(prime_factorization(10), String::from("2-1,5-1"));
+        assert_eq!(prime_factorization(360), String::from("2-3,3-2,5-1"));
         assert_eq!(
             prime_factorization(9007199254740881),
             String::from("9007199254740881-1")
