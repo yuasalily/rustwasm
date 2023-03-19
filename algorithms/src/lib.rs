@@ -2,6 +2,9 @@ use std::collections::HashMap;
 
 use wasm_bindgen::prelude::*;
 
+/// 素数判定をする関数です。
+/// 返り値が0なら素数、0以外なら少なくともその値で割り切れる。
+/// * `n` - 1以上の18446744073709551615以下の自然数
 #[wasm_bindgen]
 pub fn is_prime(n: u64) -> u64 {
     if n < 2 {
@@ -17,8 +20,11 @@ pub fn is_prime(n: u64) -> u64 {
     0
 }
 
-pub fn prime_factorization(mut n: u64) -> HashMap<u64, u32> {
-    let mut res = HashMap::new();
+/// 素因数分解をする関数です。
+/// * `n` - 1以上の18446744073709551615以下の自然数
+#[wasm_bindgen]
+pub fn prime_factorization(mut n: u64) -> String {
+    let mut res: HashMap<u64, u32> = HashMap::new();
     let mut i: u64 = 2;
     while i * i <= n {
         while n % i == 0 {
@@ -30,7 +36,17 @@ pub fn prime_factorization(mut n: u64) -> HashMap<u64, u32> {
     if n != 1 {
         *res.entry(n).or_insert(0) += 1;
     }
-    res
+    let mut res_vec: Vec<(&u64, &u32)> = res.iter().collect();
+    res_vec.sort();
+    let mut res_string = String::new();
+    for (&k, &v) in res_vec {
+        res_string = if res_string.is_empty() {
+            format!("{}{}-{}", res_string, k, v)
+        } else {
+            format!("{}-{}-{}", res_string, k, v)
+        }
+    }
+    res_string
 }
 
 #[cfg(test)]
@@ -50,14 +66,11 @@ mod tests {
 
     #[test]
     fn prime_factorization_test() {
-        assert_eq!(prime_factorization(10), HashMap::from([(2, 1), (5, 1)]));
-        assert_eq!(
-            prime_factorization(120),
-            HashMap::from([(2, 3), (3, 1), (5, 1)])
-        );
+        assert_eq!(prime_factorization(10), String::from("2-1-5-1"));
+        assert_eq!(prime_factorization(360), String::from("2-3-3-2-5-1"));
         assert_eq!(
             prime_factorization(9007199254740881),
-            HashMap::from([(9007199254740881, 1)])
+            String::from("9007199254740881-1")
         );
     }
 }
