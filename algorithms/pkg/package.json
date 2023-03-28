@@ -8,5 +8,7 @@
   ],
   "module": "algorithms.js",
   "types": "algorithms.d.ts",
-  "sideEffects": false
+  "sideEffects": [
+    "./snippets/*"
+  ]
 }
