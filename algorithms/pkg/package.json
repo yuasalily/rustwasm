@@ -4,11 +4,13 @@
   "files": [
     "algorithms_bg.wasm",
     "algorithms.js",
+    "algorithms_bg.js",
     "algorithms.d.ts"
   ],
   "module": "algorithms.js",
   "types": "algorithms.d.ts",
   "sideEffects": [
+    "./algorithms.js",
     "./snippets/*"
   ]
 }
